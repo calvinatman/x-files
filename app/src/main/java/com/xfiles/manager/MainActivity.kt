@@ -100,7 +100,7 @@ class MainActivity : ComponentActivity() {
         search = EditText(this).apply {
             hint = "Search files and folders"
             textSize = 15f
-            singleLine = true
+            isSingleLine = true
             setTextColor(ink)
             setHintTextColor(muted)
             setPadding(dp(15), 0, dp(15), 0)
