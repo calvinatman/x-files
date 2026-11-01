@@ -125,6 +125,16 @@ fun XFilesApp() {
                 }
             }
         ) { padding ->
+            if (selectedTab == "Browse") {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Black)
+                        .padding(padding)
+                ) {
+                    FileBrowserScreen()
+                }
+            } else {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -313,6 +323,7 @@ fun XFilesApp() {
                     )
                 }
                 Spacer(Modifier.height(12.dp))
+            }
             }
         }
     }
