@@ -161,7 +161,7 @@ class MainActivity : ComponentActivity() {
         choose.addView(text(currentFolder?.name ?: "No storage folder selected", 14f, ink, true))
         choose.addView(actionButton("Choose storage folder", blue) { folderPicker.launch(null) })
         body.addView(choose)
-        val search = EditText(this).apply { hint = "Search current folder"; textSize = 14f; singleLine = true; setPadding(dp(14), dp(10), dp(14), dp(10)); background = rounded(Color.WHITE, dp(14)) }
+        val search = EditText(this).apply { hint = "Search current folder"; textSize = 14f; setSingleLine(true); setPadding(dp(14), dp(10), dp(14), dp(10)); background = rounded(Color.WHITE, dp(14)) }
         body.addView(search, LinearLayout.LayoutParams(-1, dp(48)).apply { bottomMargin = dp(10) })
         val list = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL }
         body.addView(list)
