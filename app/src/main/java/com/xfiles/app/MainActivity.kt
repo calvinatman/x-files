@@ -102,7 +102,7 @@ private suspend fun performXScan(root: File, enabledCategories: Set<String>, bat
     }
 
     fun walk(dir: File, depth: Int) {
-        if (depth > if (batteryFriendly) 14 else 20 || visited++ > if (batteryFriendly) 40000 else 150000) return
+        if (depth > (if (batteryFriendly) 14 else 20) || visited++ > (if (batteryFriendly) 40000 else 150000)) return
         val canonical = runCatching { dir.canonicalPath }.getOrNull() ?: return
         if (!visitedDirectories.add(canonical)) return
         val children = runCatching { dir.listFiles() }.getOrNull() ?: return
@@ -209,6 +209,7 @@ fun XFilesApp() {
     var search by remember { mutableStateOf("") }
     var homeSearchResults by remember { mutableStateOf<List<File>>(emptyList()) }
     var homeSearchLoading by remember { mutableStateOf(false) }
+    val root = Environment.getExternalStorageDirectory()
 
     LaunchedEffect(search) {
         val query = search.trim()
@@ -226,7 +227,7 @@ fun XFilesApp() {
                     val children = runCatching { dir.listFiles()?.toList() }.getOrNull() ?: continue
                     for (child in children) {
                         if (child.name.equals("Android", true) && child.isDirectory &&
-                            child.parentFile == root) continue
+                            child.parentFile == Environment.getExternalStorageDirectory()) continue
                         if (child.name.startsWith(".")) continue
                         if (child.name.contains(query, ignoreCase = true)) found.add(child)
                         if (child.isDirectory && found.size < 100) stack.add(child)
