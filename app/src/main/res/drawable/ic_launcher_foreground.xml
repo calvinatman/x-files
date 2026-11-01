@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- angular X -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M34,30 L44,30 L54,43 L64,30 L74,30 L59,50 L74,70 L64,70 L54,57 L44,70 L34,70 L49,50 Z" />
+    <!-- folder outline -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3"
+        android:strokeLineJoin="miter"
+        android:fillColor="#00000000"
+        android:pathData="M30,60 L30,78 L78,78 L78,60 L78,64 M30,64 L30,60 L44,60 L48,64 L78,64" />
+</vector>
