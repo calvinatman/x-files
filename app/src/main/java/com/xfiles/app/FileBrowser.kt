@@ -304,7 +304,7 @@ fun FileBrowserScreen() {
             pendingZip = file
             zipEntryNames = runCatching {
                 buildList {
-                    JavaJavaJavaZipFile(file).use { zip ->
+                    JavaZipFile(file).use { zip ->
                         val entries = zip.entries()
                         while (entries.hasMoreElements()) {
                             val entry = entries.nextElement()
@@ -1459,7 +1459,7 @@ fun FileBrowserScreen() {
                                     files.forEach { source ->
                                         val parts = source.relativeTo(temp).invariantSeparatorsPath.split("/").filter { it.isNotBlank() }
                                         require(parts.isNotEmpty() && parts.none { it == "." || it == ".." }) { "Unsafe ZIP entry" }
-                                        var parent = safRoot
+                                        var parent = safRoot ?: error("Cannot access destination folder")
                                         parts.dropLast(1).forEach { part ->
                                             parent = parent.findFile(part) ?: parent.createDirectory(part)
                                                 ?: error("Cannot create folder: $part")
