@@ -242,7 +242,6 @@ fun XFilesApp() {
 
 
     val context = LocalContext.current
-    val root = remember { Environment.getExternalStorageDirectory() }
 
     var categoryResults by remember { mutableStateOf<Map<String, CategoryResult>>(emptyMap()) }
     var scanning by remember { mutableStateOf(false) }

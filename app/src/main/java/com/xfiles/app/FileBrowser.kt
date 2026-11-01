@@ -1194,7 +1194,7 @@ fun FileBrowserScreen() {
                             } else {
                                 temp.walkTopDown().filter { it.isDirectory && it != temp }.forEach { folder ->
                                     val parts = folder.relativeTo(temp).invariantSeparatorsPath.split("/")
-                                    var parent = root
+                                    var parent = root ?: error("Cannot access destination folder")
                                     parts.forEach { part ->
                                         require(part.isNotBlank() && part != "." && part != "..") { "Unsafe RAR folder" }
                                         parent = parent.findFile(part) ?: parent.createDirectory(part)
@@ -1206,7 +1206,7 @@ fun FileBrowserScreen() {
                                     require(parts.isNotEmpty() && parts.none { it.isBlank() || it == "." || it == ".." }) {
                                         "Unsafe RAR entry detected"
                                     }
-                                    var parent = root
+                                    var parent = root ?: error("Cannot access destination folder")
                                     parts.dropLast(1).forEach { part ->
                                         parent = parent.findFile(part) ?: parent.createDirectory(part)
                                             ?: error("Cannot create folder: $part")
@@ -1280,7 +1280,7 @@ fun FileBrowserScreen() {
                                         }
                                     }
                                 } else {
-                                    var parent = root
+                                    var parent = root ?: error("Cannot access destination folder")
                                     for (part in parts.dropLast(1)) {
                                         parent = parent.findFile(part)
                                             ?: parent.createDirectory(part)
@@ -1368,7 +1368,7 @@ fun FileBrowserScreen() {
                                         output.outputStream().buffered().use { tar.copyTo(it) }
                                     }
                                 } else {
-                                    var parent = root
+                                    var parent = root ?: error("Cannot access destination folder")
                                     for (part in parts.dropLast(1)) {
                                         parent = parent.findFile(part)
                                             ?: parent.createDirectory(part)
@@ -1558,7 +1558,7 @@ fun FileBrowserScreen() {
                                         output.outputStream().buffered().use { zip.copyTo(it) }
                                     }
                                 } else {
-                                    var parent = root
+                                    var parent = root ?: error("Cannot access destination folder")
                                     for (part in parts.dropLast(1)) {
                                         parent = parent.findFile(part)
                                             ?: parent.createDirectory(part)
